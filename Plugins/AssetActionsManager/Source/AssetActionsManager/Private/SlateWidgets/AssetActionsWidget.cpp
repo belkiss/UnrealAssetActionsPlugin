@@ -1491,4 +1491,6 @@ void SAssetActionsTab::TrackCheckBoxStateForHeader()
 
 #pragma endregion
 
-
+// BKS - missing undef
+#undef LOCTEXT_NAMESPACE
+// ~BKS
