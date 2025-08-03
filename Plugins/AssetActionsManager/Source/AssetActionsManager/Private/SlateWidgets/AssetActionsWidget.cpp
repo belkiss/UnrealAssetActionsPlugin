@@ -384,7 +384,9 @@ TSharedRef<SListView<TSharedPtr<FAssetData>>> SAssetActionsTab::ConstructAssetLi
 {
 	ConstructedAssetListView =
 		SNew(SListView<TSharedPtr<FAssetData>>)
-		.ItemHeight(24.f) // height of each row
+		// BKS - disabled because it caused a warning in 5.6
+		//.ItemHeight(24.f) // height of each row
+		// ~BKS
 		.ListItemsSource(&DisplayedAssetsData) // pointer to array of source items
 		.OnGenerateRow(this, &SAssetActionsTab::OnGenerateRowForListView) // create row for every asset found
 		.OnMouseButtonDoubleClick(this, &SAssetActionsTab::OnRowDoubleClick)

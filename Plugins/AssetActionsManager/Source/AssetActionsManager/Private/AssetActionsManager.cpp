@@ -241,9 +241,17 @@ void FAssetActionsManagerModule::FixUpRedirectors()
 
 	// Load assets
 	TArray<UObject*> Objects;
-	bool Result = AssetViewUtils::LoadAssetsIfNeeded(ObjectPaths, Objects, true, true);
+// BKS - replace bools with FLoadAssetsSettings as needed for 5.6
+	AssetViewUtils::FLoadAssetsSettings Settings{
+		.bFollowRedirectors = true,
+		.bLoadWorldPartitionMaps = false,
+		.bLoadAllExternalObjects = false,
+	};
 
-	if (Result)
+	AssetViewUtils::ELoadAssetsResult Result = AssetViewUtils::LoadAssetsIfNeeded(ObjectPaths, Objects, Settings);
+
+	if (Result == AssetViewUtils::ELoadAssetsResult::Success)
+// ~BKS
 	{
 		// Convert objects to object redirectors
 		TArray<UObjectRedirector*> Redirectors;
