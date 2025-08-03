@@ -141,7 +141,9 @@ TArray<TSharedPtr<FAssetData>> FAssetActionsManagerModule::GetAllAssetDataUnderS
 	TArray<FString> AllAssetsPathsNames;
 
 	// Use List Assets to get all assets paths
-	for (const FString SelectedFolderPath : SelectedFolderPaths)
+	// BKS - loop variable 'SelectedFolderPath' creates a copy from type 'const FString'
+	for (const FString& SelectedFolderPath : SelectedFolderPaths)
+	// ~BKS
 	{
 		TArray<FString> AssetsPathNames = UEditorAssetLibrary::ListAssets(SelectedFolderPath);
 		AllAssetsPathsNames.Append(AssetsPathNames);
